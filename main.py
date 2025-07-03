@@ -8,6 +8,7 @@ from shot import *
 
 
 def main():
+    score = 0
     pygame.init()
     clock = pygame.time.Clock()
     dt = 0
@@ -36,12 +37,14 @@ def main():
         for i in asteroid:
             if i.collide_detect(player_1):
                 print("Game Over!")
+                print(f"Your score: {score}")
                 sys.exit()
         for i in asteroid:
             for j in shots:
                 if i.collide_detect(j):
                     i.split()
                     j.kill()
+                    score += 1
         for i in drawable:
             i.draw(screen)
         pygame.display.flip()
